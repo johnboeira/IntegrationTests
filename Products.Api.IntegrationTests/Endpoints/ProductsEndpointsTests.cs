@@ -23,4 +23,14 @@ public class ProductsEndpointsTests
         //A
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
+
+    [Fact]
+    public async Task Get_Without_Product_Should_ReturnNotFound()
+    {
+        //A
+        var response = await _httpClient.GetAsync($"/api/products/{new Guid("11111111-2222-1231-4444-555555555555")}");
+
+        //A
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
 }
